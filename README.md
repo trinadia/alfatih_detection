@@ -4,5 +4,6 @@ for *xyxy, conf, cls in det:
                 x1, y1, x2, y2 = map(int, xyxy)
                 print(f"Object {i+1}: Class {int(cls)}, Confidence: {conf}, Coordinates: ({x1}, {y1}), ({x2}, {y2})")
 ```
-### Considerations
+### Notes
 - setting delay time after detecting the target, due to robot's legs movement duration
+- deactivate the live preview
