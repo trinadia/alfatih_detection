@@ -208,8 +208,10 @@ def run(
 
                     # Show coordinates
                     x1, y1, x2, y2 = map(int, xyxy)
+                    # (x1, y1) top-left
                     # print(f"Object {i+1}: Class {int(cls)}, Confidence: {conf}, Coordinates: ({x1}, {y1}), ({x2}, {y2})")
                     print(f"Coordinates: ({x1}, {y1}), ({x2}, {y2})")
+                    # if class == 1 (real): 
 
                     if save_csv:
                         write_to_csv(p.name, label, confidence_str)
