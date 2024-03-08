@@ -199,7 +199,7 @@ def run(
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
-                # Write results
+                # CONFIGURE HERE: WRITE RESULTS
                 for *xyxy, conf, cls in reversed(det):
                     c = int(cls)  # integer class
                     label = names[c] if hide_conf else f"{names[c]}"
@@ -210,6 +210,10 @@ def run(
                     x1, y1, x2, y2 = map(int, xyxy)
                     # (x1, y1) top-left
                     # print(f"Object {i+1}: Class {int(cls)}, Confidence: {conf}, Coordinates: ({x1}, {y1}), ({x2}, {y2})")
+                    # Object 1: Class 0, Confidence: 0.19391992688179016, Coordinates: (2, 0), (146, 480)
+                    # Object 1: Class 1, Confidence: 0.9494297504425049, Coordinates: (246, 222), (430, 476)
+                    # Classes: 0 (dummy), 1 (real)
+
                     print(f"Coordinates: ({x1}, {y1}), ({x2}, {y2})")
                     # if class == 1 (real): 
 
