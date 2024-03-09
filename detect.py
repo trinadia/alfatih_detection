@@ -214,8 +214,15 @@ def run(
                     # Object 1: Class 1, Confidence: 0.9494297504425049, Coordinates: (246, 222), (430, 476)
                     # Classes: 0 (dummy), 1 (real)
 
-                    print(f"Coordinates: ({x1}, {y1}), ({x2}, {y2})")
-                    # if class == 1 (real): 
+                    # print(f"Coordinates: ({x1}, {y1}), ({x2}, {y2})")
+                    import serial_pub
+
+                    if int(cls) == 1 and conf > 0.8: 
+                      find = serial_pub.yolo_serial(x1,y1,x2,y2)
+                      x = find.x
+                      y = find.y
+                      print("Detected target's CP: (%d, %d) \n" % (x, y))
+
 
                     if save_csv:
                         write_to_csv(p.name, label, confidence_str)
