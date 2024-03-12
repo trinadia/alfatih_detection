@@ -200,26 +200,6 @@ def run(
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
                 # CONFIGURE HERE: WRITE RESULTS
-                # Initialize webcam
-                cap = cv2.VideoCapture(0)
-
-                # Check if the webcam is opened correctly
-                if not cap.isOpened():
-                    print("Error: Failed to open webcam.")
-                    exit()
-
-                # Read first frame to get frame size
-                ret, frame = cap.read()
-                if not ret:
-                    print("Error: Failed to read frame.")
-                    exit()
-
-                # Get frame size
-                height, width = frame.shape[:2]
-
-                # cap.release()
-
-                # CONFIGURE #2
                 for *xyxy, conf, cls in reversed(det):
                     c = int(cls)  # integer class
                     label = names[c] if hide_conf else f"{names[c]}"
@@ -229,8 +209,7 @@ def run(
                     # Show coordinates
                     x1, y1, x2, y2 = map(int, xyxy)
                     # (x1, y1) top-left
-                    print(f"Object {i+1}: Class {int(cls)}, Confidence: {conf}, Coordinates: ({x1}, {y1}), ({x2}, {y2})\n")
-                    print(width)
+                    print(f"Object {i+1}: Class {int(cls)}, Confidence: {conf}, Coordinates: ({x1}, {y1}), ({x2}, {y2})")
                     
                     # Object 1: Class 0, Confidence: 0.19391992688179016, Coordinates: (2, 0), (146, 480)
                     # Object 1: Class 1, Confidence: 0.9494297504425049, Coordinates: (246, 222), (430, 476)
