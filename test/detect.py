@@ -209,20 +209,13 @@ def run(
                     # Show coordinates
                     x1, y1, x2, y2 = map(int, xyxy)
                     # (x1, y1) top-left
-                    # print(f"Object {i+1}: Class {int(cls)}, Confidence: {conf}, Coordinates: ({x1}, {y1}), ({x2}, {y2})")
+                    print(f"Object {i+1}: Class {int(cls)}, Confidence: {conf}, Coordinates: ({x1}, {y1}), ({x2}, {y2})")
+                    
                     # Object 1: Class 0, Confidence: 0.19391992688179016, Coordinates: (2, 0), (146, 480)
                     # Object 1: Class 1, Confidence: 0.9494297504425049, Coordinates: (246, 222), (430, 476)
                     # Classes: 0 (dummy), 1 (real)
 
                     # print(f"Coordinates: ({x1}, {y1}), ({x2}, {y2})")
-                    import serial_pub
-
-                    if int(cls) == 1 and conf > 0.8: 
-                      find = serial_pub.yolo_serial(x1,y1,x2,y2)
-                      x = find.x
-                      y = find.y
-                      print("Detected target's CP: (%d, %d) \n" % (x, y))
-
 
                     if save_csv:
                         write_to_csv(p.name, label, confidence_str)

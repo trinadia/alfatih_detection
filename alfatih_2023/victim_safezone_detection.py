@@ -171,8 +171,8 @@ def object_tracking():
                 
                 dist_y = frame_height - cy
                 
-                print("dist x : ", dist_x, end="  ")
-                print("dist y : ", dist_y, end="  ")
+                print("dist x : ", dist_x, end="  ", flush=True)
+                print("dist y : ", dist_y, end="  ", flush=True)
                 
                 theta = math.degrees(math.atan2(dist_y,dist_x))
                 print("theta : ", theta)

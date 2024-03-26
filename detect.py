@@ -206,12 +206,28 @@ def run(
                     confidence = float(conf)
                     confidence_str = f"{confidence:.2f}"
 
-                    # Show coordinates
-                    x1, y1, x2, y2 = map(int, xyxy)
-                    # (x1, y1) top-left
-                    print(f"Object {i+1}: Class {int(cls)}, Confidence: {conf}, Coordinates: ({x1}, {y1}), ({x2}, {y2})")
+		    # frame's centerpoint as setpoint
+                    width, height = im.shape[-2:]
+                    x_cp_sp = width // 2
+                    y_cp_sp = height // 2
+                    # area_sp = width * height # setpoint area
                     
-                    # Object 1: Class 0, Confidence: 0.19391992688179016, Coordinates: (2, 0), (146, 480)
+		    # Show coordinates
+                    x1, y1, x2, y2 = map(int, xyxy)
+                    x_cp_det = (x2 + x1)//2
+                    y_cp_det = (y1 + y2)//2
+
+		    # (x1, y1) top-left
+                    print(f"Object {i+1}: Class {int(cls)}, Confidence: {conf}, Coordinates: ({x1}, {y1}), ({x2}, {y2})")
+                    print("(%g, %g)\n" % (x_cp_det, y_cp_det))
+
+                    from serial_pub_nocv import yolo_serial
+                    yolo_ser = yolo_serial(x_cp_det, y_cp_det, x_cp_sp, y_cp_sp)
+                    x_err = yolo_ser.x
+                    y_err = yolo_ser.y
+                    print("Error: (%g, %g)\n" % (x_err, y_err))
+                   
+		    # Object 1: Class 0, Confidence: 0.19391992688179016, Coordinates: (2, 0), (146, 480)
                     # Object 1: Class 1, Confidence: 0.9494297504425049, Coordinates: (246, 222), (430, 476)
                     # Classes: 0 (dummy), 1 (real)
 
