@@ -186,7 +186,7 @@ def run(
             p = Path(p)  # to Path
             save_path = str(save_dir / p.name)  # im.jpg
             txt_path = str(save_dir / "labels" / p.stem) + ("" if dataset.mode == "image" else f"_{frame}")  # im.txt
-            s += "%gx%g " % im.shape[2:]  # print string
+            s += "%gx%g " % im.shape[2:]  # print string --> image size, e.g. 480x640
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
             imc = im0.copy() if save_crop else im0  # for save_crop
             annotator = Annotator(im0, line_width=line_thickness, example=str(names))
@@ -206,28 +206,34 @@ def run(
                     confidence = float(conf)
                     confidence_str = f"{confidence:.2f}"
 
-		    # frame's centerpoint as setpoint
+                    # frame's centerpoint as setpoint
                     width, height = im.shape[-2:]
                     x_cp_sp = width // 2
                     y_cp_sp = height // 2
-                    # area_sp = width * height # setpoint area
-                    
-		    # Show coordinates
-                    x1, y1, x2, y2 = map(int, xyxy)
-                    x_cp_det = (x2 + x1)//2
-                    y_cp_det = (y1 + y2)//2
 
-		    # (x1, y1) top-left
+                    # Show coordinates
+                    x1, y1, x2, y2 = map(int, xyxy)
+                    x_cp_det = (x2 + x1)/2
+                    y_cp_det = (y1 + y2)/2
+                    # width_det = x2-x1
+                    # height_det = y1-y2
+                    # area_det = width_det * height_det
+                    
+                    # (x1, y1) top-left
                     print(f"Object {i+1}: Class {int(cls)}, Confidence: {conf}, Coordinates: ({x1}, {y1}), ({x2}, {y2})")
-                    print("(%g, %g)\n" % (x_cp_det, y_cp_det))
 
                     from serial_pub_nocv import yolo_serial
-                    yolo_ser = yolo_serial(x_cp_det, y_cp_det, x_cp_sp, y_cp_sp)
-                    x_err = yolo_ser.x
-                    y_err = yolo_ser.y
-                    print("Error: (%g, %g)\n" % (x_err, y_err))
-                   
-		    # Object 1: Class 0, Confidence: 0.19391992688179016, Coordinates: (2, 0), (146, 480)
+
+                    if cls == 1 and conf >= 0.90:
+                        print("(%g, %g)\n" % (x_cp_det, y_cp_det))
+                        
+                        yolo_ser = yolo_serial(x_cp_det, y_cp_det, x_cp_sp, y_cp_sp)
+                        x_err = yolo_ser.x
+                        y_err = yolo_ser.y
+                        
+                        print("Error: (%g, %g)\n" % (x_err, y_err))
+                    
+                    # Object 1: Class 0, Confidence: 0.19391992688179016, Coordinates: (2, 0), (146, 480)
                     # Object 1: Class 1, Confidence: 0.9494297504425049, Coordinates: (246, 222), (430, 476)
                     # Classes: 0 (dummy), 1 (real)
 
