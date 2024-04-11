@@ -1,7 +1,7 @@
 # mkdir -p /path/to/weights
 # cp my-weights.pt /path/to/weights
 xhost +local:
-docker run -it --rm \
+sudo docker run -it --rm \
            --runtime nvidia \
            --network host \
            --device /dev/video0:/dev/video0:mrw \
