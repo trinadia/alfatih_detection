@@ -105,6 +105,14 @@ def object_tracking():
     global distance_obj
     ret, img = cap.read()
 
+    # Define the new size (width, height)
+    new_width = 640
+    new_height = 480
+    new_size = (new_width, new_height)
+
+    # Resize the frame
+    img = cv2.resize(img, new_size)
+
     new_frame_time = time.time()
     fps = 1/(new_frame_time-prev_frame_time)
     prev_frame_time = new_frame_time
