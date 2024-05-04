@@ -28,3 +28,8 @@ Error: (41, -56)
 
 ### Changing passkey
 `ssh-keygen -p -f /path/to/your/private/key`
+
+### Files
+- `detect.py` : import [serial_pub_nocv.py](https://github.com/trinadia/alfatih_detection/blob/main/serial_pub_nocv.py)
+- `detect2.py` : no external file needed
+- THE MOST UPDATED WEIGHT: `best_new_640.pt`
