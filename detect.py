@@ -207,7 +207,7 @@ def run(
                     confidence_str = f"{confidence:.2f}"
 
                     # frame's centerpoint as setpoint
-                    width, height = im.shape[-2:]
+                    height, width = im.shape[-2:]
                     x_cp_sp = width // 2
                     y_cp_sp = height // 2
 
