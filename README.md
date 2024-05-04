@@ -22,13 +22,13 @@ Error: (43, -57)
 Object 1: Class 1, Confidence: 0.7908230423927307, Coordinates: (179, 152), (383, 377)
 (281, 264)
 
-### Files
-- `detect.py` : import [serial_pub_nocv.py](https://github.com/trinadia/alfatih_detection/blob/main/serial_pub_nocv.py)
-- 'detect2.py': no external file needed
-
 Error: (41, -56)
 0: 480x640 1 dummy, 1 real, 1357.6ms
 ```
 
 ### Changing passkey
 `ssh-keygen -p -f /path/to/your/private/key`
+
+### Files
+- `detect.py` : import [serial_pub_nocv.py](https://github.com/trinadia/alfatih_detection/blob/main/serial_pub_nocv.py)
+- 'detect2.py': no external file needed
