@@ -34,3 +34,9 @@ Error: (41, -56)
 - `detect2.py` : no external file needed
 - `startup_detect.sh` : commands to run YOLOv5 on startup
 - THE MOST UPDATED WEIGHT: `best_new_640.pt`
+
+how to kill virtual display (especially after running `startup_detect_docker.sh` or `startup_detect.sh`):<br>
+```bash
+ps aux | grep Xvfb
+sudo kill [PID]
+```
