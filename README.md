@@ -32,4 +32,5 @@ Error: (41, -56)
 ### Files
 - `detect.py` : import [serial_pub_nocv.py](https://github.com/trinadia/alfatih_detection/blob/main/serial_pub_nocv.py)
 - `detect2.py` : no external file needed
+- `startup_detect.sh` : commands to run YOLOv5 on startup
 - THE MOST UPDATED WEIGHT: `best_new_640.pt`
