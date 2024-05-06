@@ -40,3 +40,4 @@ how to kill virtual display (especially after running `startup_detect_docker.sh`
 ps aux | grep Xvfb
 sudo kill [PID]
 ```
+- `loop_test_serial.py`: to run UART test with `test_serial_int.py`
