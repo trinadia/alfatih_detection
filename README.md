@@ -41,3 +41,4 @@ ps aux | grep Xvfb
 sudo kill [PID]
 ```
 - `loop_test_serial.py`: to run UART test with `test_serial_int.py`
+- `read_int_jetson.ino`: to read from `test_serial_int.py`
