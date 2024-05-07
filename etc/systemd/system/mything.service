@@ -1,0 +1,10 @@
+[Unit]
+Description=Startup Script
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c 'source /home/alfatih/envstart/bin/activate && /usr/bin/python3 /home/alfatih/loop_test_serial.py'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
